@@ -3,812 +3,698 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Material de Apoio — Pedagogia do Oprimido</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<title>Pedagogia do Oprimido — Paulo Freire</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1208;
-    --parchment: #f5ede0;
-    --warm-mid: #e8d9c2;
-    --accent-red: #8b1a1a;
-    --accent-gold: #c8922a;
-    --accent-green: #2a5c3f;
-    --accent-blue: #1e3a5f;
-    --accent-purple: #4a2060;
-    --muted: #6b5c45;
-    --rule: #c8b89a;
+    --cream: #f5f0e8;
+    --dark: #1a1208;
+    --brown: #3d2b1f;
+    --gold: #c8922a;
+    --rust: #a64b2a;
+    --sage: #5a7a5c;
+    --ink: #2c1f10;
+    --paper: #ede8dc;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--parchment);
+    background: var(--cream);
     color: var(--ink);
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 16px;
-    line-height: 1.75;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    line-height: 1.8;
+    overflow-x: hidden;
   }
 
-  /* HEADER */
-  .site-header {
-    background: var(--ink);
-    color: var(--parchment);
-    padding: 3rem 2rem 2.5rem;
-    text-align: center;
+  /* ── HERO ── */
+  .hero {
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
     overflow: hidden;
   }
-  .site-header::before {
-    content: '';
+
+  .hero-bg {
     position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 18px,
-      rgba(200,146,42,0.06) 18px,
-      rgba(200,146,42,0.06) 19px
-    );
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, #3d2b1f88 0%, transparent 70%),
+      repeating-linear-gradient(
+        0deg, transparent, transparent 39px,
+        rgba(200,146,42,0.07) 39px, rgba(200,146,42,0.07) 40px
+      ),
+      repeating-linear-gradient(
+        90deg, transparent, transparent 39px,
+        rgba(200,146,42,0.04) 39px, rgba(200,146,42,0.04) 40px
+      );
   }
-  .site-header .eyebrow {
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.78rem;
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: #c8b89a;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 80px; height: 2px;
+    background: var(--gold);
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: expand 0.8s 0.8s forwards;
+  }
+
+  .hero-quote {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    color: #b0a090;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  section { padding: 6rem 0; }
+
+  section:nth-child(even) { background: var(--paper); }
+  section:nth-child(odd) { background: var(--cream); }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--accent-gold);
-    margin-bottom: 0.75rem;
+    color: var(--rust);
+    margin-bottom: 1rem;
   }
-  .site-header h1 {
+
+  .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-  .site-header .subtitle {
-    font-size: 1rem;
-    color: #c4b49a;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-  .header-rule {
-    width: 80px; height: 2px;
-    background: var(--accent-gold);
-    margin: 0 auto;
-  }
-
-  /* NAV */
-  .nav-bar {
-    background: var(--warm-mid);
-    border-bottom: 2px solid var(--rule);
-    padding: 0.75rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-bar a {
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    padding: 0.35rem 0.9rem;
-    border-radius: 2px;
-    border: 1.5px solid transparent;
-    transition: all 0.2s;
-    font-family: 'Source Serif 4', serif;
-  }
-  .nav-bar a:hover { opacity: 0.85; }
-  .nav-a { color: var(--accent-red); border-color: var(--accent-red); }
-  .nav-b { color: var(--accent-blue); border-color: var(--accent-blue); }
-  .nav-c { color: var(--accent-green); border-color: var(--accent-green); }
-  .nav-d { color: var(--accent-purple); border-color: var(--accent-purple); }
-  .nav-e { color: var(--accent-gold); border-color: var(--accent-gold); }
-
-  /* MAIN */
-  main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-
-  /* CARD */
-  .card {
-    background: #fff;
-    border-radius: 3px;
-    margin-bottom: 3.5rem;
-    box-shadow: 0 2px 18px rgba(26,18,8,0.10);
-    overflow: hidden;
-    animation: fadeUp 0.5s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .card:nth-child(1) { animation-delay: 0.05s; }
-  .card:nth-child(2) { animation-delay: 0.12s; }
-  .card:nth-child(3) { animation-delay: 0.19s; }
-  .card:nth-child(4) { animation-delay: 0.26s; }
-  .card:nth-child(5) { animation-delay: 0.33s; }
-
-  /* CARD HEADER */
-  .card-header {
-    display: flex;
-    align-items: stretch;
-    min-height: 120px;
-  }
-  .card-accent-bar {
-    width: 8px;
-    flex-shrink: 0;
-  }
-  .card-header-body {
-    padding: 1.6rem 1.8rem;
-    flex: 1;
-  }
-  .aluno-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
-    padding: 0.25rem 0.7rem;
-    border-radius: 1px;
-    margin-bottom: 0.5rem;
-    font-family: 'Source Serif 4', serif;
-  }
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
+    color: var(--brown);
     line-height: 1.2;
-    margin-bottom: 0.3rem;
-  }
-  .card-slides {
-    font-size: 0.82rem;
-    font-style: italic;
-    color: var(--muted);
+    margin-bottom: 2rem;
   }
 
-  /* ALUNO COLOR THEMES */
-  .theme-a .card-accent-bar { background: var(--accent-red); }
-  .theme-a .aluno-badge { background: var(--accent-red); color: #fff; }
-  .theme-a .card-title { color: var(--accent-red); }
-  .theme-a .section-label { color: var(--accent-red); border-color: var(--accent-red); }
-  .theme-a .quote-block { border-color: var(--accent-red); }
-  .theme-a .tag { background: #fdf0f0; color: var(--accent-red); border-color: #e8c0c0; }
-  .theme-a .expand-btn { color: var(--accent-red); border-color: var(--accent-red); }
-  .theme-a .expand-btn:hover { background: var(--accent-red); color: #fff; }
+  .section-title span { color: var(--gold); }
 
-  .theme-b .card-accent-bar { background: var(--accent-blue); }
-  .theme-b .aluno-badge { background: var(--accent-blue); color: #fff; }
-  .theme-b .card-title { color: var(--accent-blue); }
-  .theme-b .section-label { color: var(--accent-blue); border-color: var(--accent-blue); }
-  .theme-b .quote-block { border-color: var(--accent-blue); }
-  .theme-b .tag { background: #f0f3f8; color: var(--accent-blue); border-color: #b8c8dc; }
-  .theme-b .expand-btn { color: var(--accent-blue); border-color: var(--accent-blue); }
-  .theme-b .expand-btn:hover { background: var(--accent-blue); color: #fff; }
-
-  .theme-c .card-accent-bar { background: var(--accent-green); }
-  .theme-c .aluno-badge { background: var(--accent-green); color: #fff; }
-  .theme-c .card-title { color: var(--accent-green); }
-  .theme-c .section-label { color: var(--accent-green); border-color: var(--accent-green); }
-  .theme-c .quote-block { border-color: var(--accent-green); }
-  .theme-c .tag { background: #f0f6f2; color: var(--accent-green); border-color: #b0cebb; }
-  .theme-c .expand-btn { color: var(--accent-green); border-color: var(--accent-green); }
-  .theme-c .expand-btn:hover { background: var(--accent-green); color: #fff; }
-
-  .theme-d .card-accent-bar { background: var(--accent-purple); }
-  .theme-d .aluno-badge { background: var(--accent-purple); color: #fff; }
-  .theme-d .card-title { color: var(--accent-purple); }
-  .theme-d .section-label { color: var(--accent-purple); border-color: var(--accent-purple); }
-  .theme-d .quote-block { border-color: var(--accent-purple); }
-  .theme-d .tag { background: #f5f0f8; color: var(--accent-purple); border-color: #c8b0dc; }
-  .theme-d .expand-btn { color: var(--accent-purple); border-color: var(--accent-purple); }
-  .theme-d .expand-btn:hover { background: var(--accent-purple); color: #fff; }
-
-  .theme-e .card-accent-bar { background: var(--accent-gold); }
-  .theme-e .aluno-badge { background: var(--accent-gold); color: #fff; }
-  .theme-e .card-title { color: #9a6e18; }
-  .theme-e .section-label { color: #9a6e18; border-color: var(--accent-gold); }
-  .theme-e .quote-block { border-color: var(--accent-gold); }
-  .theme-e .tag { background: #fdf6e8; color: #9a6e18; border-color: #e8d0a0; }
-  .theme-e .expand-btn { color: #9a6e18; border-color: var(--accent-gold); }
-  .theme-e .expand-btn:hover { background: var(--accent-gold); color: #fff; }
-
-  /* CARD BODY */
-  .card-body { padding: 0 1.8rem 1.8rem; }
-
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border-left: 3px solid;
-    padding-left: 0.6rem;
-    margin: 1.6rem 0 0.8rem;
-    font-family: 'Source Serif 4', serif;
+  .rule {
+    width: 48px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 2.5rem;
   }
 
-  /* CONTEXT SUMMARY */
-  .context-box {
-    background: var(--warm-mid);
-    border-radius: 2px;
-    padding: 1rem 1.2rem;
-    font-size: 0.93rem;
-    line-height: 1.7;
-    margin-bottom: 0.5rem;
-  }
-  .context-box strong { font-weight: 600; }
-
-  /* QUOTE */
-  .quote-block {
-    border-left: 4px solid;
-    padding: 0.8rem 1.2rem;
-    margin: 1rem 0;
-    background: var(--parchment);
-    border-radius: 0 2px 2px 0;
-  }
-  .quote-block p {
-    font-style: italic;
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-  .quote-block cite {
-    display: block;
-    font-size: 0.78rem;
-    font-style: normal;
-    letter-spacing: 0.05em;
-    color: var(--muted);
-    margin-top: 0.4rem;
+  /* ── PROSE ── */
+  .prose p {
+    font-size: 1.05rem;
+    color: #3a2c1e;
+    margin-bottom: 1.4rem;
+    max-width: 70ch;
   }
 
-  /* CONCEPTS GRID */
-  .concepts-grid {
+  /* ── CONCEPT CARDS ── */
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.9rem;
-    margin: 0.8rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
   }
-  .concept-item {
-    background: var(--parchment);
-    border-radius: 2px;
-    padding: 0.9rem 1rem;
+
+  .card {
+    background: var(--dark);
+    border-left: 4px solid var(--gold);
+    padding: 2rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .concept-item h4 {
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(200,146,42,0.08);
+  }
+
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+
+  .card-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
   }
-  .concept-item p {
-    font-size: 0.87rem;
+
+  .card p {
+    font-size: 0.9rem;
+    color: #a09080;
     line-height: 1.6;
-    color: #3a3020;
   }
 
-  /* TAGS */
-  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
-  .tag {
-    font-size: 0.76rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 1px;
-    border: 1px solid;
-    letter-spacing: 0.04em;
-    font-family: 'Source Serif 4', serif;
+  /* ── COMPARE TABLE ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 2.5rem;
+    border: 1px solid #d0c8b8;
+    overflow: hidden;
   }
 
-  /* APROFUNDAMENTO - COLLAPSIBLE */
-  .expand-btn {
-    background: none;
-    border: 1.5px solid;
-    border-radius: 2px;
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: all 0.2s;
-    font-family: 'Source Serif 4', serif;
+  .compare-col { padding: 2rem; }
+  .compare-col:first-child {
+    background: #2c1f10;
+    border-right: 1px solid #d0c8b8;
   }
-  .expand-content {
-    display: none;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--rule);
-  }
-  .expand-content.open { display: block; }
-  .expand-content p { font-size: 0.93rem; margin-bottom: 0.7rem; }
-  .expand-content ul { padding-left: 1.2rem; }
-  .expand-content li { font-size: 0.92rem; margin-bottom: 0.4rem; }
+  .compare-col:last-child { background: var(--sage); }
 
-  /* PERGUNTA PARA REFLEXÃO */
-  .reflection {
-    background: var(--ink);
-    color: var(--parchment);
-    border-radius: 2px;
-    padding: 1rem 1.2rem;
-    margin-top: 1.4rem;
-  }
-  .reflection .r-label {
+  .compare-head {
+    font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent-gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .compare-col:first-child .compare-head { color: var(--rust); }
+  .compare-col:last-child .compare-head { color: #c8e8ca; }
+
+  .compare-item {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .compare-col:first-child .compare-item { color: #c8b8a8; }
+  .compare-col:last-child .compare-item { color: #e8f4e8; }
+
+  .compare-icon { flex-shrink: 0; font-size: 1rem; }
+
+  @media (max-width: 540px) {
+    .compare { grid-template-columns: 1fr; }
+    .compare-col:first-child { border-right: none; border-bottom: 1px solid #d0c8b8; }
+  }
+
+  /* ── TRIO ── */
+  .trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 2.5rem;
+    border: 1px solid #d0c8b8;
+  }
+
+  .trio-item {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid #d0c8b8;
+    position: relative;
+  }
+
+  .trio-item:last-child { border-right: none; }
+
+  .trio-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(200,146,42,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .trio-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 0.35rem;
-    font-family: 'Source Serif 4', serif;
+    color: var(--brown);
+    margin-bottom: 0.8rem;
   }
-  .reflection p { font-size: 0.95rem; line-height: 1.65; font-style: italic; }
 
-  /* DIVIDER */
-  .rule { border: none; border-top: 1px solid var(--rule); margin: 1.2rem 0; }
+  .trio-text {
+    font-size: 0.88rem;
+    color: #5a4a3a;
+    line-height: 1.6;
+  }
 
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 2rem;
+  @media (max-width: 640px) {
+    .trio { grid-template-columns: 1fr; }
+    .trio-item { border-right: none; border-bottom: 1px solid #d0c8b8; }
+    .trio-item:last-child { border-bottom: none; }
+  }
+
+  /* ── PULLQUOTE ── */
+  .pullquote {
+    border-left: 5px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 3rem 0;
+    background: rgba(200,146,42,0.06);
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--brown);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── METHOD STEPS ── */
+  .steps { margin-top: 2.5rem; }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #d0c8b8;
+  }
+
+  .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .step-badge {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+  }
+
+  .step-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--brown);
+    margin-bottom: 0.4rem;
+  }
+
+  .step-body p { font-size: 0.92rem; color: #5a4a3a; }
+
+  /* ── TEAM ── */
+  .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .team-chip {
+    font-family: 'Space Mono', monospace;
     font-size: 0.8rem;
-    color: var(--muted);
-    border-top: 1px solid var(--rule);
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--gold);
+    color: var(--brown);
+    background: transparent;
+    letter-spacing: 0.05em;
   }
 
-  @media (max-width: 600px) {
-    .card-header { flex-direction: column; }
-    .card-accent-bar { width: 100%; height: 6px; }
-    .concepts-grid { grid-template-columns: 1fr; }
+  /* ── REFS ── */
+  .refs-list { margin-top: 2rem; }
+
+  .ref-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #d0c8b8;
+    font-size: 0.9rem;
+    color: #4a3a2a;
+  }
+
+  .ref-item:last-child { border-bottom: none; }
+
+  .ref-item strong { color: var(--brown); }
+
+  /* ── AI NOTICE ── */
+  .ai-notice {
+    background: var(--dark);
+    padding: 1.2rem 1.6rem;
+    border-left: 4px solid var(--sage);
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .ai-notice-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  .ai-notice p {
+    font-size: 0.85rem;
+    color: #a0b8a0;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: #5a4a3a;
+    text-transform: uppercase;
+  }
+
+  footer .institution {
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expand {
+    from { opacity: 0; width: 0; }
+    to   { opacity: 1; width: 80px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
   }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <p class="eyebrow">UFRPE — Material de Apoio Individualizado</p>
-  <h1>Pedagogia do Oprimido</h1>
-  <p class="subtitle">Extensão e complementação das falas — Paulo Freire</p>
-  <div class="header-rule"></div>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Resumo — Semana 10 · Grupo 01 · UFRPE</p>
+    <h1 class="hero-title">Pedagogia do<br><em>Oprimido</em></h1>
+    <p class="hero-subtitle">A Obra Revolucionária de Paulo Freire</p>
+    <div class="hero-divider"></div>
+    <p class="hero-quote">"A educação não transforma o mundo. A educação muda as pessoas. Pessoas transformam o mundo."</p>
+  </div>
 </header>
 
-<nav class="nav-bar">
-  <a class="nav-a" href="#aluno-a">Aluno A — Slides 1–3</a>
-  <a class="nav-b" href="#aluno-b">Aluno B — Slides 4–5</a>
-  <a class="nav-c" href="#aluno-c">Aluno C — Slides 6–7</a>
-  <a class="nav-d" href="#aluno-d">Aluno D — Slides 8–9</a>
-  <a class="nav-e" href="#aluno-e">Aluno E — Slides 10–11</a>
-</nav>
+<!-- QUEM FOI PAULO FREIRE -->
+<section id="autor">
+  <div class="container">
+    <p class="section-label reveal">Contexto</p>
+    <h2 class="section-title reveal">Quem foi <span>Paulo Freire?</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>Paulo Freire (1921–1997) foi um educador pernambucano cujo pensamento transformou profundamente a filosofia da educação no século XX. Para ele, educar ia muito além de ensinar a ler e escrever: era um compromisso com a vida e a existência humana em sua totalidade.</p>
+      <p>Freire compreendia o ato de educar como fundamentalmente político. A educação, para ele, nunca é neutra: ou serve para libertar as consciências, ampliando a capacidade crítica das pessoas, ou serve para domesticá-las, adaptando-as passivamente a um sistema desigual. Sua obra mais célebre, <em>Pedagogia do Oprimido</em> (1968), é ao mesmo tempo uma crítica ao modelo educacional vigente e uma proposta de transformação social pela educação.</p>
+    </div>
+  </div>
+</section>
 
-<main>
+<!-- OPRESSORES E OPRIMIDOS -->
+<section id="opressao">
+  <div class="container">
+    <p class="section-label reveal">Fundamento teórico</p>
+    <h2 class="section-title reveal">Opressores e <span>Oprimidos</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>O ponto de partida de Freire é o diagnóstico de uma sociedade estruturalmente dividida: de um lado estão os opressores, que dominam e desumanizam; do outro, os oprimidos, que têm sua humanidade negada e são impedidos de ser quem são.</p>
+      <p>Para Freire, a violência não começa com a reação do oprimido, mas com o próprio ato de opressão. O grande desafio — e o risco — da libertação é que o oprimido, ao se libertar, pode inconscientemente reproduzir a lógica do opressor, tornando-se ele mesmo um novo dominador.</p>
+    </div>
+    <div class="pullquote reveal">
+      <p>O objetivo da pedagogia freireana não é apenas inverter a hierarquia, mas restaurar a humanidade de todos — inclusive a do opressor, desumanizado pelo próprio ato de oprimir.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- ===== ALUNO A ===== -->
-  <section class="card theme-a" id="aluno-a">
-    <div class="card-header">
-      <div class="card-accent-bar"></div>
-      <div class="card-header-body">
-        <span class="aluno-badge">Aluno A</span>
-        <h2 class="card-title">Freire, a Obra e a Contradição Opressor–Oprimido</h2>
-        <p class="card-slides">Slides 1, 2 e 3 · Contextualização, Autor e Fundamentos do Cap. 1</p>
+<!-- EDUCAÇÃO BANCÁRIA -->
+<section id="bancaria">
+  <div class="container">
+    <p class="section-label reveal">Crítica</p>
+    <h2 class="section-title reveal">A Educação <span>Bancária</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>Freire cunha o conceito de <strong>educação bancária</strong> para denunciar o modelo pedagógico dominante. Nesse modelo, o professor é visto como detentor absoluto do saber e o aluno como um recipiente vazio a ser preenchido — como uma conta bancária.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <p class="card-num">01 — RELAÇÃO</p>
+        <h3>Hierarquia absoluta</h3>
+        <p>O professor sabe tudo; o aluno nada sabe. Não há diálogo nem troca de saberes entre as partes.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">02 — MÉTODO</p>
+        <h3>Memorização passiva</h3>
+        <p>O aluno memoriza e repete conteúdos desconectados de sua realidade, sem questionar ou problematizar.</p>
+      </div>
+      <div class="card">
+        <p class="card-num">03 — OBJETIVO</p>
+        <h3>Domesticação</h3>
+        <p>A finalidade oculta é adaptar o indivíduo ao sistema vigente, impedindo uma visão crítica do mundo.</p>
       </div>
     </div>
-    <div class="card-body">
+  </div>
+</section>
 
-      <p class="section-label">O que você apresentou</p>
-      <div class="context-box">
-        Seus slides introduzem Paulo Freire como <strong>"educador da liberdade"</strong>, posicionam a educação como ato político e expõem a contradição opressor–oprimido: a violência parte de quem oprime, o oprimido não deve tornar-se novo opressor, e o objetivo é restaurar a humanidade de todos.
-      </div>
-
-      <p class="section-label">O que o livro aprofunda</p>
-
-      <p>Freire abre a obra afirmando que a <em>humanização</em> é a vocação histórica dos homens — mas essa vocação é negada pela opressão. Isso significa que a desumanização <strong>não é destino</strong>, mas resultado de uma ordem injusta. É esse reconhecimento que torna a luta possível e necessária.</p>
-
-      <div class="quote-block">
-        <p>"A desumanização, mesmo que um fato concreto na história, não é porém, destino dado, mas resultado de uma 'ordem' injusta que gera a violência dos opressores."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 1</cite>
-      </div>
-
-      <p>Um ponto que o slide não detalha, mas que é central no livro: o oprimido frequentemente <strong>"hospeda" o opressor dentro de si</strong>. Isso faz com que, num primeiro momento, ele queira ser opressor — não se libertar. Freire chama isso de <em>aderência</em> ao opressor.</p>
-
-      <p class="section-label">Conceitos-chave para ampliar sua fala</p>
-      <div class="concepts-grid">
-        <div class="concept-item">
-          <h4>Ser Mais</h4>
-          <p>Vocação ontológica dos homens. Ser mais é humanizar-se continuamente. A opressão bloqueia esse movimento ao reduzir o oprimido a "coisa".</p>
-        </div>
-        <div class="concept-item">
-          <h4>Aderência ao Opressor</h4>
-          <p>O oprimido introjetou a figura do opressor. Por isso, num primeiro momento, deseja imitá-lo em vez de superá-lo — um dos maiores desafios da libertação.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Falsa Generosidade</h4>
-          <p>O opressor pode agir "generosamente", mas isso mantém a injustiça que justifica essa generosidade. Freire chama isso de generosidade necrófila.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Práxis Libertadora</h4>
-          <p>A libertação exige ação e reflexão. Não basta reconhecer a opressão — é preciso agir sobre ela. Só assim o oprimido transita de objeto a sujeito.</p>
-        </div>
-      </div>
-
-      <div class="quote-block">
-        <p>"Ninguém liberta ninguém, ninguém se liberta sozinho: os homens se libertam em comunhão."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 1</cite>
-      </div>
-
-      <div class="tags">
-        <span class="tag">Humanização</span>
-        <span class="tag">Vocação Ontológica</span>
-        <span class="tag">Aderência</span>
-        <span class="tag">Falsa Generosidade</span>
-        <span class="tag">Práxis</span>
-        <span class="tag">Ser Mais</span>
-      </div>
-
-      <button class="expand-btn" onclick="toggle(this)">▸ Aprofundamento — O medo da liberdade</button>
-      <div class="expand-content">
-        <p>Freire dedica parte do Capítulo 1 ao conceito de <strong>"medo da liberdade"</strong>. Tanto oprimidos quanto opressores o têm — mas de formas opostas. Os oprimidos temem <em>assumir</em> a liberdade; os opressores temem <em>perder a liberdade de oprimir</em>.</p>
-        <p>Esse medo faz com que muitos oprimidos, ao invés de lutar, se acomodem. Freire analisa isso como um mecanismo psicológico de defesa gerado pela própria estrutura opressora — não como fraqueza individual.</p>
-        <ul>
-          <li>A libertação exige que o oprimido <em>expulse o opressor de dentro de si</em> — não apenas do sistema externo.</li>
-          <li>Isso é um processo doloroso: Freire compara à metáfora do <strong>parto</strong>.</li>
-          <li>O "homem novo" que nasce não é opressor nem oprimido — é um homem libertando-se.</li>
-        </ul>
-      </div>
-
-      <div class="reflection">
-        <p class="r-label">Pergunta para provocar o debate</p>
-        <p>Se o oprimido carrega o opressor dentro de si, como é possível iniciar um processo genuíno de libertação sem reproduzir as mesmas relações de poder que se quer superar?</p>
-      </div>
-
+<!-- EDUCAÇÃO LIBERTADORA -->
+<section id="libertadora">
+  <div class="container">
+    <p class="section-label reveal">Proposta</p>
+    <h2 class="section-title reveal">Educação <span>Libertadora</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>Em contraposição à educação bancária, Freire propõe uma pedagogia fundada no diálogo, na conscientização e na práxis — a união inseparável entre reflexão e ação transformadora.</p>
     </div>
-  </section>
-
-  <!-- ===== ALUNO B ===== -->
-  <section class="card theme-b" id="aluno-b">
-    <div class="card-header">
-      <div class="card-accent-bar"></div>
-      <div class="card-header-body">
-        <span class="aluno-badge">Aluno B</span>
-        <h2 class="card-title">Educação Bancária e Educação Libertadora</h2>
-        <p class="card-slides">Slides 4 e 5 · Cap. 2 — A concepção bancária como instrumento da opressão</p>
+    <div class="trio reveal">
+      <div class="trio-item">
+        <div class="trio-num">I</div>
+        <h3 class="trio-title">Diálogo</h3>
+        <p class="trio-text">Professor e aluno aprendem juntos. Ninguém ensina ninguém de forma unilateral — as pessoas se educam mutuamente, mediadas pelo mundo.</p>
+      </div>
+      <div class="trio-item">
+        <div class="trio-num">II</div>
+        <h3 class="trio-title">Conscientização</h3>
+        <p class="trio-text">Perceber a realidade não como algo fixo e imutável, mas como uma situação-problema que pode — e deve — ser transformada pela ação coletiva.</p>
+      </div>
+      <div class="trio-item">
+        <div class="trio-num">III</div>
+        <h3 class="trio-title">Práxis</h3>
+        <p class="trio-text">A união entre teoria e prática. Não basta refletir sobre o mundo: é preciso agir sobre ele para transformá-lo de forma concreta.</p>
       </div>
     </div>
-    <div class="card-body">
-
-      <p class="section-label">O que você apresentou</p>
-      <div class="context-box">
-        Seus slides explicam a <strong>educação bancária</strong> — o professor deposita, o aluno recebe passivamente, memoriza e repete — em oposição à <strong>educação libertadora</strong>, baseada em diálogo, conscientização e práxis. Você usou a frase central de Freire: <em>"ninguém educa ninguém, as pessoas se educam entre si."</em>
-      </div>
-
-      <p class="section-label">O que o livro aprofunda</p>
-
-      <p>Freire lista dez contradições da educação bancária no Capítulo 2, das quais o slide mostra apenas algumas. Vale destacar que o modelo bancário <strong>não é apenas pedagógico — é político</strong>: ao adaptar o educando ao mundo existente, ele serve diretamente aos interesses dos opressores.</p>
-
-      <div class="quote-block">
-        <p>"O que pretendem os opressores é transformar a mentalidade dos oprimidos e não a situação que os oprime."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 2</cite>
-      </div>
-
-      <p>Freire também mostra que a educação bancária gera <em>necrofilia</em> — no sentido de Fromm: amor à morte, ao estático, ao mecânico. A educação libertadora, ao contrário, é <strong>biófila</strong>: estimula a vida, a criatividade, o movimento.</p>
-
-      <p class="section-label">As 10 contradições da educação bancária (síntese)</p>
-      <div class="concepts-grid">
-        <div class="concept-item">
-          <h4>Saber x Ignorância</h4>
-          <p>O educador é quem sabe; o educando é quem nada sabe — absolutização da ignorância.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Sujeito x Objeto</h4>
-          <p>O educador é sujeito ativo; o educando é objeto passivo de sua narração.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Falar x Escutar</h4>
-          <p>O educador diz a palavra; o educando escuta docilmente e a arquiva.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Prescrição x Opção</h4>
-          <p>O educador impõe suas escolhas; o educando segue prescrições sem decidir.</p>
-        </div>
-      </div>
-
-      <div class="quote-block">
-        <p>"Só existe saber na invenção, na reinvenção, na busca inquieta, impaciente, permanente, que os homens fazem no mundo, com o mundo e com os outros."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 2</cite>
-      </div>
-
-      <p class="section-label">Educação problematizadora — o que vai além do slide</p>
-      <p>O slide resume bem os três pilares (diálogo, conscientização, práxis), mas o livro acrescenta algo crucial: a educação problematizadora parte do princípio de que <strong>os homens são seres inconclusos</strong> — conscientes da própria inconclusão. É essa consciência que torna a educação um processo permanente, nunca terminado.</p>
-
-      <div class="tags">
-        <span class="tag">Educação Bancária</span>
-        <span class="tag">Necrofilia</span>
-        <span class="tag">Biofilia</span>
-        <span class="tag">Educação Problematizadora</span>
-        <span class="tag">Ser Inconcluso</span>
-        <span class="tag">Domesticação</span>
-      </div>
-
-      <button class="expand-btn" onclick="toggle(this)">▸ Aprofundamento — Consciência e Mundo</button>
-      <div class="expand-content">
-        <p>Freire usa o conceito fenomenológico de <strong>intencionalidade da consciência</strong> (de Husserl) para explicar que a consciência é sempre consciência <em>de</em> algo — ela se dirige ao mundo. A educação bancária trata a consciência como um "recipiente vazio", o que é uma falsificação filosófica.</p>
-        <p>A educação problematizadora respeita essa intencionalidade: propõe o mundo como problema, não como dado estático.</p>
-        <ul>
-          <li>O camponês que declarou <em>"Descubro agora que não há mundo sem homem"</em> ilustra esse despertar no texto.</li>
-          <li>A superação da percepção ingênua (doxa) pela percepção crítica (logos) é o objetivo da educação libertadora.</li>
-          <li>Freire distingue: <strong>emersão</strong> (sair da imersão no mundo) → <strong>inserção crítica</strong> (agir sobre ele).</li>
-        </ul>
-      </div>
-
-      <div class="reflection">
-        <p class="r-label">Pergunta para provocar o debate</p>
-        <p>Onde na sua experiência escolar você identificou práticas bancárias? E práticas problematizadoras? O que diferenciou as duas na sala de aula real?</p>
-      </div>
-
+    <div class="pullquote reveal" style="margin-top:2.5rem">
+      <p>O diálogo não é mero instrumento pedagógico. Para Freire, ele exige amor — compromisso com a causa do outro —, humildade — a consciência de que ninguém possui a verdade absoluta — e fé nos seres humanos — a crença de que todos podem criar e recriar o mundo.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== ALUNO C ===== -->
-  <section class="card theme-c" id="aluno-c">
-    <div class="card-header">
-      <div class="card-accent-bar"></div>
-      <div class="card-header-body">
-        <span class="aluno-badge">Aluno C</span>
-        <h2 class="card-title">O Diálogo e os Temas Geradores</h2>
-        <p class="card-slides">Slides 6 e 7 · Cap. 3 — Dialogicidade e investigação temática</p>
+<!-- COMO FUNCIONA -->
+<section id="metodo">
+  <div class="container">
+    <p class="section-label reveal">Método</p>
+    <h2 class="section-title reveal">Como <span>Funciona?</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>O método freireano de alfabetização e conscientização se organiza em três etapas interdependentes, aplicadas nos chamados <em>Círculos de Cultura</em>.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-badge">01</div>
+        <div class="step-body">
+          <h4>Pesquisa (Levantamento de Temas)</h4>
+          <p>Ouvir a comunidade para descobrir o que realmente importa para ela — suas angústias, aspirações e contradições vividas. O ponto de partida é sempre a realidade concreta dos educandos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-badge">02</div>
+        <div class="step-body">
+          <h4>Tematização (Palavras Geradoras)</h4>
+          <p>Selecionar palavras ou temas com forte carga emocional, social e política para o grupo. Essas palavras geradoras servem como ponto de partida para a leitura do mundo — e depois, da palavra escrita.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-badge">03</div>
+        <div class="step-body">
+          <h4>Problematização (Debate e Ação)</h4>
+          <p>Debater coletivamente os temas para compreender as causas estruturais dos problemas identificados e buscar, juntos, caminhos de transformação. O debate gera consciência; a consciência impulsiona a ação.</p>
+        </div>
       </div>
     </div>
-    <div class="card-body">
 
-      <p class="section-label">O que você apresentou</p>
-      <div class="context-box">
-        Seus slides apresentam o diálogo como exigência existencial (amor, humildade, fé nos homens) e descrevem o método em três etapas: <strong>pesquisa</strong> (ouvir a comunidade), <strong>tematização</strong> (palavras geradoras) e <strong>problematização</strong> (debater causas e soluções).
-      </div>
-
-      <p class="section-label">O que o livro aprofunda</p>
-
-      <p>O diálogo para Freire vai além de conversar. É um <strong>ato ontológico</strong> — constitutivo da própria humanidade. A palavra tem duas dimensões inseparáveis: <em>ação</em> e <em>reflexão</em>. Suprimir uma gera verbalismo (palavras vazias) ou ativismo (ação sem sentido).</p>
-
-      <div class="quote-block">
-        <p>"Não há palavra verdadeira que não seja práxis. Daí que dizer a palavra verdadeira seja transformar o mundo."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 3</cite>
-      </div>
-
-      <p>Sobre as palavras geradoras: o slide menciona "carga emocional e social", mas o critério de Freire é mais preciso — as palavras são escolhidas pela sua <strong>riqueza fonêmica</strong> (permitem gerar outras palavras) e pela sua <strong>carga existencial</strong> (remetem a situações concretas vividas pela comunidade).</p>
-
-      <p class="section-label">As 5 condições do diálogo verdadeiro</p>
-      <div class="concepts-grid">
-        <div class="concept-item">
-          <h4>Amor</h4>
-          <p>Não amor sentimental — compromisso com a libertação dos oprimidos. "Amor, não. Porque é um ato de coragem, nunca de medo."</p>
-        </div>
-        <div class="concept-item">
-          <h4>Humildade</h4>
-          <p>Ninguém é dono da verdade. Quem se crê superior não pode dialogar — só prescrever.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Fé nos Homens</h4>
-          <p>Crença prévia no poder criador de todos. Sem essa fé, o diálogo vira manipulação paternalista.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Esperança</h4>
-          <p>O diálogo não pode existir na desesperança. Quem não espera nada de seu agir não pode dialogar.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Pensar Crítico</h4>
-          <p>Pensar que não aceita dicotomias, que percebe a realidade em processo, em devenir constante.</p>
-        </div>
-      </div>
-
-      <div class="quote-block">
-        <p>"O diálogo é este encontro dos homens, mediatizados pelo mundo, para pronunciá-lo, não se esgotando, portanto, na relação eu-tu."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 3</cite>
-      </div>
-
-      <div class="tags">
-        <span class="tag">Palavra como Práxis</span>
-        <span class="tag">Temas Geradores</span>
-        <span class="tag">Universo Temático</span>
-        <span class="tag">Palavras Geradoras</span>
-        <span class="tag">Esperança</span>
-        <span class="tag">Pensar Crítico</span>
-      </div>
-
-      <button class="expand-btn" onclick="toggle(this)">▸ Aprofundamento — Universo temático e investigação</button>
-      <div class="expand-content">
-        <p>Freire descreve um processo rigoroso de investigação dos <strong>temas geradores</strong> — não é simplesmente "ouvir a comunidade". Há etapas bem definidas:</p>
-        <ul>
-          <li><strong>1ª etapa:</strong> Investigadores visitam a área e observam criticamente, registrando contradições e modos de viver.</li>
-          <li><strong>2ª etapa:</strong> Escolha de situações a serem codificadas — representações visuais da realidade local.</li>
-          <li><strong>3ª etapa:</strong> Círculos de investigação temática — os próprios moradores decodificam as situações em diálogo.</li>
-          <li><strong>4ª etapa:</strong> Equipe interdisciplinar analisa os achados e organiza o conteúdo programático.</li>
-        </ul>
-        <p>O ponto fundamental: os investigados <strong>são sujeitos da investigação</strong>, não objetos. A pesquisa já é, em si mesma, um ato educativo.</p>
-      </div>
-
-      <div class="reflection">
-        <p class="r-label">Pergunta para provocar o debate</p>
-        <p>Quais seriam os "temas geradores" de uma comunidade universitária como a da UFRPE? Que palavras geradoras surgiriam se ouvíssemos os estudantes sobre o que realmente importa para eles?</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== ALUNO D ===== -->
-  <section class="card theme-d" id="aluno-d">
-    <div class="card-header">
-      <div class="card-accent-bar"></div>
-      <div class="card-header-body">
-        <span class="aluno-badge">Aluno D</span>
-        <h2 class="card-title">Círculo de Cultura e Teoria da Ação Antidialógica</h2>
-        <p class="card-slides">Slides 8 e 9 · Cap. 3–4 — Metodologia e teorias da ação</p>
+    <div style="margin-top:3rem" class="reveal">
+      <p class="section-label">Espaço pedagógico</p>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--brown);margin-bottom:1rem;">Círculo de Cultura</h3>
+      <div class="prose">
+        <p>O Círculo de Cultura é o espaço onde essa pedagogia ganha vida. Disposto em círculo — para que todos se vejam — ele rompe fisicamente com a hierarquia da sala de aula tradicional. O educador deixa de ser o transmissor da verdade e passa a ser um <em>animador cultural</em>: alguém que provoca, questiona e sistematiza o debate, partilhando o saber com a comunidade em vez de impô-lo sobre ela.</p>
       </div>
     </div>
-    <div class="card-body">
+  </div>
+</section>
 
-      <p class="section-label">O que você apresentou</p>
-      <div class="context-box">
-        Seus slides descrevem o <strong>Círculo de Cultura</strong> — espaço onde o professor é "animador" e o saber é partilhado — e a tabela comparativa entre a ação do opressor (conquista, divisão, manipulação, invasão cultural) e a ação do povo (colaboração, união, organização, síntese cultural).
-      </div>
-
-      <p class="section-label">O que o livro aprofunda</p>
-
-      <p>No Círculo de Cultura, Freire é mais radical do que o slide sugere: <strong>não há professor</strong>. Há um <em>coordenador</em>, cuja função é reduzir ao mínimo sua intervenção e propiciar condições ao diálogo. O saber não é partilhado de cima para baixo — ele emerge da comunhão entre todos.</p>
-
-      <div class="quote-block">
-        <p>"No círculo de cultura, a rigor, não se ensina, aprende-se em 'reciprocidade de consciências'; não há professor, há um coordenador."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Prefácio de Ernani Fiori</cite>
-      </div>
-
-      <p>Sobre o slide "Dominar ou Libertar?": o quadro comparativo está correto e fiel ao Capítulo 4. Mas é importante enfatizar que essas não são apenas <em>estratégias</em> — são <strong>teorias completas de ação cultural</strong>, com lógicas internas opostas. A antidialógica serve à manutenção do poder; a dialógica, à sua superação.</p>
-
-      <p class="section-label">As 4 características da ação antidialógica em profundidade</p>
-      <div class="concepts-grid">
-        <div class="concept-item">
-          <h4>Conquista</h4>
-          <p>Transforma o outro em "coisa". O conquistado introjetará o conquistador e se tornará ambíguo — hospedeiro do opressor.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Divisão</h4>
-          <p>Isolar os oprimidos é condição para manter o domínio. A visão "focalista" dos problemas impede que percebam a totalidade opressora.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Manipulação</h4>
-          <p>Usada quando as massas emergem e ameaçam. Inclui mitos, slogans, assistencialismo e populismo. Cria uma "organização" inautêntica.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Invasão Cultural</h4>
-          <p>Penetração da visão de mundo dos invasores nos invadidos, freando sua criatividade e impondo padrões externos como superiores.</p>
-        </div>
-      </div>
-
-      <div class="quote-block">
-        <p>"A invasão cultural, indiscutivelmente alienante, realizada maciamente ou não, é sempre uma violência ao ser da cultura invadida."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 4</cite>
-      </div>
-
-      <div class="tags">
-        <span class="tag">Círculo de Cultura</span>
-        <span class="tag">Coordenador</span>
-        <span class="tag">Ação Antidialógica</span>
-        <span class="tag">Ação Dialógica</span>
-        <span class="tag">Invasão Cultural</span>
-        <span class="tag">Co-laboração</span>
-      </div>
-
-      <button class="expand-btn" onclick="toggle(this)">▸ Aprofundamento — Por que a liderança revolucionária não pode ser antidialógica</button>
-      <div class="expand-content">
-        <p>Freire faz uma crítica interna ao pensamento revolucionário: mesmo lideranças que querem libertar o povo <strong>podem reproduzir a antidialogicidade</strong> ao usar slogans, comunicados e decisões verticais. Isso não é revolução — é troca de opressor.</p>
-        <ul>
-          <li>A revolução autêntica tem, desde o início, um caráter pedagógico e dialógico.</li>
-          <li>Freire cita Guevara: a "comunhão com o povo" transformou uma "decisão lírica" em práxis revolucionária sólida.</li>
-          <li>A co-laboração (com hífen) não é simples trabalho conjunto — é ação de sujeitos que se constroem mutuamente.</li>
-        </ul>
-        <p>Isso tem implicações diretas para qualquer projeto educativo: grupos, movimentos e até apresentações acadêmicas podem ser dialógicos ou antidialógicos dependendo de como tratam quem ouve.</p>
-      </div>
-
-      <div class="reflection">
-        <p class="r-label">Pergunta para provocar o debate</p>
-        <p>Uma apresentação como a de vocês — em que um grupo expõe e uma turma ouve — está mais próxima da educação bancária ou da dialógica? O que precisaria mudar para torná-la verdadeiramente freireana?</p>
-      </div>
-
+<!-- DOMINAR OU LIBERTAR -->
+<section id="acoes">
+  <div class="container">
+    <p class="section-label reveal">Teoria da Ação</p>
+    <h2 class="section-title reveal">Dominar ou <span>Libertar?</span></h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>No quarto capítulo, Freire sistematiza as estratégias opostas que caracterizam a ação do opressor e a ação revolucionária do povo. Compreendê-las é fundamental para não reproduzir, involuntariamente, a lógica dominante.</p>
     </div>
-  </section>
-
-  <!-- ===== ALUNO E ===== -->
-  <section class="card theme-e" id="aluno-e">
-    <div class="card-header">
-      <div class="card-accent-bar"></div>
-      <div class="card-header-body">
-        <span class="aluno-badge">Aluno E</span>
-        <h2 class="card-title">Síntese Cultural e a Atualidade de Freire</h2>
-        <p class="card-slides">Slides 10 e 11 · Cap. 4 — Síntese cultural e encerramento</p>
+    <div class="compare reveal">
+      <div class="compare-col">
+        <p class="compare-head">Ação do Opressor</p>
+        <div class="compare-item"><span class="compare-icon">✕</span><span><strong>Conquista:</strong> trata o outro como objeto, como coisa a ser dominada e possuída.</span></div>
+        <div class="compare-item"><span class="compare-icon">✕</span><span><strong>Divisão:</strong> isola para enfraquecer, impedindo a solidariedade entre os oprimidos.</span></div>
+        <div class="compare-item"><span class="compare-icon">✕</span><span><strong>Manipulação:</strong> engana por meio de mitos que naturalizam a desigualdade.</span></div>
+        <div class="compare-item"><span class="compare-icon">✕</span><span><strong>Invasão Cultural:</strong> impõe sua visão de mundo, silenciando a cultura do outro.</span></div>
+      </div>
+      <div class="compare-col">
+        <p class="compare-head">Ação Libertadora</p>
+        <div class="compare-item"><span class="compare-icon">✓</span><span><strong>Colaboração:</strong> trabalha junto, reconhecendo o outro como sujeito e parceiro.</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span><strong>União:</strong> promove solidariedade de classe e consciência coletiva.</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span><strong>Organização:</strong> constrói disciplina coletiva com base no diálogo e na confiança.</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span><strong>Síntese Cultural:</strong> integra saberes diferentes, enriquecendo a cultura de todos.</span></div>
       </div>
     </div>
-    <div class="card-body">
 
-      <p class="section-label">O que você apresentou</p>
-      <div class="context-box">
-        Seus slides apresentam a <strong>síntese cultural</strong> como o momento em que o educador integra-se à cultura do povo (em vez de invadi-la), unindo conhecimento acadêmico e sabedoria popular. O slide final encerra com uma citação de Freire e o convite ao diálogo com a turma.
+    <div style="margin-top:3rem" class="reveal">
+      <p class="section-label">Síntese Cultural</p>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--brown);margin-bottom:1rem;">A União dos Saberes</h3>
+      <div class="prose">
+        <p>A libertação se completa quando o educador para de invadir a cultura popular com seus valores e perspectivas e passa a integrar-se nela. É o encontro entre o conhecimento acadêmico e a sabedoria vivida pelo povo — um abraço que, para Freire, é a única base sólida para transformar a sociedade de forma genuína e duradoura.</p>
       </div>
-
-      <p class="section-label">O que o livro aprofunda</p>
-
-      <p>A síntese cultural é, para Freire, a modalidade de ação com que <strong>a própria cultura se volta contra a alienação que ela mesma gera</strong>. Não é apenas "misturar saberes" — é um processo no qual investigadores e povo são <em>co-autores</em> de um conhecimento que nenhum dos dois teria sozinho.</p>
-
-      <div class="quote-block">
-        <p>"Na síntese cultural, os atores se integram com os homens do povo, atores também da ação que ambos exercem sobre o mundo."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 4</cite>
-      </div>
-
-      <p>Sobre a <strong>citação do slide final</strong> — "A educação não transforma o mundo. A educação muda as pessoas. Pessoas transformam o mundo" — vale um alerta: ela não está no livro e tem autoria contestada. O próprio Freire, ao longo do texto, afirma que educação e transformação do mundo são indissociáveis na práxis. A citação pode simplificar o pensamento dele de forma equivocada.</p>
-
-      <p class="section-label">Por que a síntese cultural supera a invasão</p>
-      <div class="concepts-grid">
-        <div class="concept-item">
-          <h4>Na Invasão</h4>
-          <p>Os atores chegam ao povo com seu marco valorativo já pronto, impondo sua visão como superior. O povo é objeto.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Na Síntese</h4>
-          <p>Os atores chegam para conhecer com o povo, não para ensinar. Ambos são sujeitos que se transformam mutuamente.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Resultado</h4>
-          <p>Um saber novo que não é apenas o da liderança nem apenas o do povo — é criação conjunta, dialógica e comprometida com a transformação.</p>
-        </div>
-        <div class="concept-item">
-          <h4>Revolução Cultural</h4>
-          <p>A síntese cultural continuada se torna "revolução cultural" — esforço de conscientização que acompanha a revolução em todas as suas fases.</p>
-        </div>
-      </div>
-
-      <div class="quote-block">
-        <p>"Toda revolução, se autêntica, tem de ser também revolução cultural."</p>
-        <cite>— Paulo Freire, Pedagogia do Oprimido, Cap. 4</cite>
-      </div>
-
-      <p class="section-label">A atualidade de Freire</p>
-      <p>Freire escreveu a obra no exílio, em 1968, mas suas categorias continuam operando em contextos contemporâneos: plataformas digitais que manipulam narrativas (invasão cultural), currículos escolares que ignoram os saberes locais (educação bancária), movimentos sociais que dialogam horizontalmente (síntese cultural). A apresentação de vocês é, em si, um ato político — e pode ser freireana ou antidialógica dependendo de como conduz o debate final.</p>
-
-      <div class="tags">
-        <span class="tag">Síntese Cultural</span>
-        <span class="tag">Revolução Cultural</span>
-        <span class="tag">Co-autoria</span>
-        <span class="tag">Saber Popular</span>
-        <span class="tag">Atualidade de Freire</span>
-        <span class="tag">Ato Político</span>
-      </div>
-
-      <button class="expand-btn" onclick="toggle(this)">▸ Aprofundamento — Desenvolvimento vs. Modernização</button>
-      <div class="expand-content">
-        <p>No final do Capítulo 4, Freire faz uma distinção pouco conhecida mas muito relevante: <strong>desenvolvimento não é o mesmo que modernização</strong>.</p>
-        <ul>
-          <li>A <em>modernização</em> é induzida de fora: novas tecnologias, novas formas, mas com o ponto de decisão ainda na metrópole.</li>
-          <li>O <em>desenvolvimento</em> exige que a sociedade seja um "ser para si" — com seu próprio ponto de decisão, sua própria cultura como motor.</li>
-          <li>Sociedades duais, reflexas e dependentes podem ser modernizadas, mas não se desenvolvem — porque não são sujeitas de sua própria história.</li>
-        </ul>
-        <p>Isso conecta diretamente à síntese cultural: só há desenvolvimento quando o povo é sujeito, não objeto — seja na educação, seja na economia, seja na política.</p>
-      </div>
-
-      <div class="reflection">
-        <p class="r-label">Pergunta para fechar o debate com a turma</p>
-        <p>Depois de tudo que foi apresentado hoje: em que situações do cotidiano de vocês — na universidade, na família, nas redes sociais — vocês identificam a lógica bancária e a lógica dialógica operando simultaneamente?</p>
-      </div>
-
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
+<!-- INTEGRANTES -->
+<section id="integrantes">
+  <div class="container">
+    <p class="section-label reveal">Autoria</p>
+    <h2 class="section-title reveal"><span>Integrantes</span> do Grupo</h2>
+    <div class="rule reveal"></div>
+    <div class="prose reveal">
+      <p>Este trabalho foi elaborado pelo Grupo 01 da Semana 10, como parte das atividades acadêmicas da Universidade Federal Rural de Pernambuco (UFRPE).</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-chip">Geovanna Maria</div>
+      <div class="team-chip">Helber Lucca</div>
+      <div class="team-chip">Joaquim Fragoso</div>
+      <div class="team-chip">Maria Eduarda</div>
+      <div class="team-chip">Marcos Vinícius</div>
+    </div>
+  </div>
+</section>
 
+<!-- REFERÊNCIAS -->
+<section id="referencias">
+  <div class="container">
+    <p class="section-label reveal">Fontes</p>
+    <h2 class="section-title reveal"><span>Referências</span></h2>
+    <div class="rule reveal"></div>
+    <div class="refs-list reveal">
+      <div class="ref-item">
+        <strong>FREIRE, Paulo.</strong> <em>Pedagogia do Oprimido.</em> 17. ed. Rio de Janeiro: Paz e Terra, 1987. (Obra original publicada em 1968.)
+      </div>
+      <div class="ref-item">
+        <strong>FREIRE, Paulo.</strong> <em>Educação como Prática da Liberdade.</em> Rio de Janeiro: Paz e Terra, 1967.
+      </div>
+      <div class="ref-item">
+        <strong>FREIRE, Paulo.</strong> <em>Pedagogia da Autonomia: saberes necessários à prática educativa.</em> São Paulo: Paz e Terra, 1996.
+      </div>
+      <div class="ref-item">
+        <strong>GADOTTI, Moacir.</strong> <em>Paulo Freire: uma biobibliografia.</em> São Paulo: Cortez / Instituto Paulo Freire, 1996.
+      </div>
+      <div class="ref-item">
+        Material de apresentação elaborado pelo Grupo 01 — Semana 10. UFRPE, 2025.
+      </div>
+    </div>
+
+    <div class="ai-notice reveal">
+      <span class="ai-notice-icon">🤖</span>
+      <p><strong style="color:#c8e8ca;">Uso de Inteligência Artificial:</strong> A elaboração deste resumo contou com o auxílio de ferramentas de Inteligência Artificial (IA generativa) para organização, síntese e formatação do conteúdo. Todo o material foi baseado na obra de Paulo Freire e nos slides produzidos pelo grupo, sendo a IA utilizada como suporte editorial, sem substituir a autoria ou o julgamento acadêmico dos integrantes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>Material elaborado com base em <em>Pedagogia do Oprimido</em> (Paulo Freire, 23ª reimpressão) e nos slides da apresentação do Grupo 01 — UFRPE · Semana 10</p>
+  <p class="institution">UFRPE — Universidade Federal Rural de Pernambuco</p>
+  <p>Grupo 01 · Semana 10 · Pedagogia do Oprimido</p>
 </footer>
 
 <script>
-  function toggle(btn) {
-    const content = btn.nextElementSibling;
-    content.classList.toggle('open');
-    btn.textContent = content.classList.contains('open')
-      ? btn.textContent.replace('▸', '▾')
-      : btn.textContent.replace('▾', '▸');
-  }
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
